@@ -1,8 +1,18 @@
 (ns ring-app.core
-  (:require [muuntaja.middleware :as muuntaja]
+  (:require [reitit.ring :as reitit]
+            [muuntaja.middleware :as muuntaja]
             [ring.adapter.jetty :as jetty]
             [ring.util.http-response :as response]
             [ring.middleware.reload :refer [wrap-reload]]))
+
+;; Comments
+
+(def routes
+  [["/" {:get html-handler}]])
+
+(def handler
+  (reitit/ring-handler
+   (reitit/router routes)))
 
 (defn html-handler [request-map]
   (response/ok
@@ -10,10 +20,10 @@
       (:remote-addr request-map)
     "</body></html>")))
 
-(defn json-handler [request]
-  (response/ok {:result (get-in request [:body-params :id])}))
+;;(defn json-handler [request]
+;;  (response/ok {:result (get-in request [:body-params :id])}))
 
-(def handler json-handler)
+;;(def handler json-handler)
 
 (defn wrap-nocache [handler]
   (fn [request]

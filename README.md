@@ -1,10 +1,25 @@
-# ring-app
+# Ring app
 
 A Clojure library designed to ... well, that part is up to you.
 
+## Dependencies
+
+Muuntaja Clojure library for fast http format negotiation, encoding and decoding. More Information [Here](https://cljdoc.org/d/metosin/muuntaja/0.6.8/doc/readme)
+encoder/decoder API
+
 ## Usage
 
-FIXME
+JSON encoded request and response.
+
+```sh
+$ curl -H "Content-Type: application/json" -X POST -d '{"id":1}' http://localhost:3000
+```
+
+EDN encoded request and response.
+
+```sh
+$ curl -H "Content-Type: application/edn" -H "Accept: application/edn"  -X POST -d '{"id":1}' http://localhost:3000
+```
 
 ## License
 

@@ -5,7 +5,8 @@
             :url "https://www.eclipse.org/legal/epl-2.0/"}
   :dependencies [[org.clojure/clojure "1.11.1"]
                  [metosin/muuntaja "0.6.8"]
+                 [metosin/reitit "0.5.18"]
                  [metosin/ring-http-response "0.9.1"]
-                 [ring "1.8.2"]]
+                 [ring "1.9.6"]]
   :repl-options {:init-ns ring-app.core}
   :main ring-app.core)
