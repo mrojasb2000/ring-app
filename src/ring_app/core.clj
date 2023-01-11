@@ -7,18 +7,20 @@
 
 ;; Comments
 
-(def routes
-  [["/" {:get html-handler}]])
-
-(def handler
-  (reitit/ring-handler
-   (reitit/router routes)))
-
 (defn html-handler [request-map]
   (response/ok
     (str "<html><body> your IP is: "
       (:remote-addr request-map)
     "</body></html>")))
+
+(def routes
+  [["/" {:get html-handler :post html-handler}]])
+
+(def handler
+  (reitit/ring-handler
+   (reitit/router routes)))
+
+
 
 ;;(defn json-handler [request]
 ;;  (response/ok {:result (get-in request [:body-params :id])}))
