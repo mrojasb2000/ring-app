@@ -21,6 +21,14 @@ EDN encoded request and response.
 $ curl -H "Content-Type: application/edn" -H "Accept: application/edn"  -X POST -d '{"id":1}' http://localhost:3000
 ```
 
+## Routes
+
+Path: "/" currently, the route onlu response to GET requests.
+
+```sh
+$ curl http://localhost:3000
+```
+
 ## License
 
 Copyright © 2023 FIXME
