@@ -23,10 +23,22 @@ $ curl -H "Content-Type: application/edn" -H "Accept: application/edn"  -X POST 
 
 ## Routes
 
-Path: "/" currently, the route onlu response to GET requests.
+Path: "/" currently, the route only response to GET requests.
 
 ```sh
 $ curl http://localhost:3000
+```
+
+Path: "/" currently, the route only response to POST requests.
+
+```sh
+$ curl -X POST http://localhost:3000
+```
+
+Path: "/echo/:id" currently, the route response to GET dynamics requests. Supports dynamic paths with embedded parameters.
+
+```sh
+$ curl -X GET http://localhost:3000/echo/5
 ```
 
 ## License

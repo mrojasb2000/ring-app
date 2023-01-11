@@ -14,7 +14,9 @@
     "</body></html>")))
 
 (def routes
-  [["/" {:get html-handler :post html-handler}]])
+  [["/" {:get html-handler :post html-handler}]
+   ["/echo/:id" {:get (fn [{{:keys [id]} :path-params}]
+     (response/ok (str "<p>the value is: " id "</p>")))}]])
 
 (def handler
   (reitit/ring-handler
