@@ -13,10 +13,14 @@
       (:remote-addr request-map)
     "</body></html>")))
 
+(defn wrap-formats [handler]
+  (-> handler (muuntaja/wrap-format)))
+
 (def routes
   [["/" {:get html-handler :post html-handler}]
-   ["/echo/:id" {:get (fn [{{:keys [id]} :path-params}]
-     (response/ok (str "<p>the value is: " id "</p>")))}]])
+   ["/echo/:id" {:get (fn [{{:keys [id]} :path-params}] (response/ok (str "<p>the value is: " id "</p>")))}]
+   ["/api" {:middleware [wrap-formats]} 
+     ["/multiply" {:post (fn [{{:keys [a b]} :body-params}] (response/ok {:result (* a b)}))}]]])
 
 (def handler
   (reitit/ring-handler
@@ -35,14 +39,11 @@
         handler
         (assoc-in [:headers "Pragma"] "no-cache"))))
 
-(defn wrap-formats [handler]
-  (-> handler (muuntaja/wrap-format)))
 
 (defn -main []
   (jetty/run-jetty
    (-> #'handler
        wrap-nocache
-       wrap-formats
        wrap-reload)
    {:port 3000
     :join? false}))

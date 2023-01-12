@@ -41,6 +41,12 @@ Path: "/echo/:id" currently, the route response to GET dynamics requests. Suppor
 $ curl -X GET http://localhost:3000/echo/5
 ```
 
+Path: "/api/multiply" the route response to POST requests. It's feature is ability to selectively apply middleware for specific routes.
+
+```sh
+$ curl -H "Content-Type: application/json" -X POST http://localhost:3000/api/multiply -d '{"a": 3, "b": 2}'
+```
+
 ## License
 
 Copyright © 2023 FIXME
